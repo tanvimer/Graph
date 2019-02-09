@@ -1,0 +1,30 @@
+class GFG
+{
+    public static void dfs(int[][] a,int i,int j,boolean[][] visited){
+        int x[]={-1,0,-1,1,0,1,-1,1};
+        int y[]={-1,-1,1,0,1,1,0,-1};
+        visited[i][j]=true;
+        for(int k=0;k<8;k++){
+            int newi=i+x[k];
+            int newj=j+y[k];
+            if(newi>=0 && newi <a.length && newj>=0 && newj<a[0].length && a[newi][newj]==1 && visited[newi][newj]==false)
+        
+            dfs(a,newi,newj,visited);
+        }
+    }
+    public static int findisland(int[][]a,int n,int m)
+    {   
+        boolean[][]visited =new boolean[n][m]; 
+        int i,j,count=0;
+        for(i=0;i<n;i++){
+            for(j=0;j<m;j++){
+                if(a[i][j]==1 && visited[i][j]==false){
+                    dfs(a,i,j,visited);
+                    count++;
+                }
+            }
+            
+        }
+        return count;
+    }
+}
